@@ -334,7 +334,7 @@ contract SeasonalTokenFarm is ERC721TokenReceiver {
         require(tickLower == REQUIRED_TICK_LOWER && tickUpper == REQUIRED_TICK_UPPER,
                 "Liquidity must cover full range of prices");
 
-        require(fee == 10000, "Fee tier must be 1%");
+        require(fee == 100, "Fee tier must be 0.01%");
 
         return liquidityToken;
     }

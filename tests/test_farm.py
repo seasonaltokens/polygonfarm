@@ -2,7 +2,7 @@ import pytest
 from brownie import TestSpringToken, TestNftPositionManager, TestSeasonalTokenFarm
 from brownie import accounts, chain, reverts
 
-correct_fee = 10000
+correct_fee = 100
 incorrect_fee = 500
 
 
@@ -136,7 +136,7 @@ def test_deposit_revert_not_full_range(accounts, position_manager, farm, weth, s
 def test_deposit_revert_wrong_fee_tier(accounts, position_manager, farm, weth, spring):
     position_manager.createLiquidityToken(accounts[0].address, spring.address, weth.address, incorrect_fee,
                                           -887272, 887272, 10000000000, {'from': accounts[0]})
-    with reverts("Fee tier must be 1%"):
+    with reverts("Fee tier must be 0.01%"):
         position_manager.safeTransferFrom(accounts[0].address, farm.address, 0, {'from': accounts[0]})
 
 def test_deposit_revert_not_uniswap_v3_token(accounts, position_manager, farm, weth, spring):
